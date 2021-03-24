@@ -1,0 +1,45 @@
+.container{
+    vertical-align: middle; 
+    width: 1800px;
+    height: 1000px; /*era 850*/
+    background: #D7DEDB;
+    margin-top: 30px;
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    display: flex;
+    text-align: center;
+    color: #96B7A8;
+    border: 1px solid #073430;
+    margin: 4.0em auto;
+}
+
+/*div#title{
+    font: normal 54px GOGOIA;
+    color: #0C1712;
+}*/
+
+div#title{
+    width: 400px;
+    height: 50px;
+    background:#073430;
+    font: normal 54px GOGOIA;
+    color: #96B7A8;
+    text-align: center;
+    margin-bottom: -64px;
+    margin-left: 43px;
+    border: 1px solid #073430;
+}
+
+
+.hotel{
+    width: 300px;
+    height: 420px;
+    border: 1px solid rgb(136, 156, 147);/* #073430;*/
+    margin-top: 50px;
+    margin-left: 30px;
+    border-radius: 10px;
+    /*overflow: hidden;*/
+    background-color:whitesmoke;
+    font: normal 30px GOGOIA;
+    color:  rgb(107, 117, 112);
+}

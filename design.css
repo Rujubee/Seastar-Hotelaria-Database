@@ -1,0 +1,138 @@
+.header{
+    /*text-align: center;*/
+    position: center;
+}
+
+/*div#announce{
+    width: auto;
+    background: linear-gradient(to right,#19917f,#19917f, #156358);
+    font: normal 10pt Arial;
+    padding: 3px;
+    text-align: center;
+    /*width: 250px;  250px cobre a logo
+    width: 495px;
+}*/
+
+.container{
+    
+    vertical-align: middle; 
+    width: 601px;
+    height: 690px;
+    background: #D7DEDB;
+    margin-top: 30px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+    color: #96B7A8;
+    border: 1px solid #707070;
+    /*border: inset #707070;*/
+    margin: 4.0em auto;
+}
+
+div#title{
+    width: 514px;
+    height: 105px;
+    background: #C3CBC7;
+    text-align: center;
+    margin-top: -750px;
+    font: normal 54px gogoia;
+    color: #0C1712;
+}
+
+div#innerBusca{
+    width: 601px;
+    height: 600px;
+    background:#073430;
+    text-align: center;
+    margin-top: 20px;
+    margin-left: 20px;
+    position: absolute;
+    font: normal 31px gogoia;
+}
+
+.body{
+ /*   margin: 0px;*/
+    margin-left: 1000px;
+    text-align: center;
+    background-repeat: no-repeat;   
+}
+
+.destino{
+    border-radius: 15px;
+    width: 493px;
+    height: 59px;
+    font: normal 35px gogoia;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+label{
+    /*float: left; 
+    width: 7em; */
+    margin-right: 1em;
+    width: 7em;
+    font-size: 31px;
+    float: left;
+   
+    
+}
+.checkin{
+    border-radius: 15px;
+    width: 236px;
+    height: 59px;
+    font: normal 35px gogoia;
+    text-align: center;
+    float: 20px left;
+    margin-bottom: 30px;
+}
+
+.checkout{
+    border-radius: 15px;
+    width: 236px;
+    height: 59px;
+    font: normal 35px GOGOIA;
+    text-align: center;
+    float: -20px right;
+    margin-bottom: 30px;
+}
+
+.hospedes{
+    border-radius: 15px;
+    width: 236px;
+    height: 59px;
+    font: normal 35px gogoia;
+    text-align: center;
+    float: left;
+    margin-left: 50px;
+    margin-bottom: 30px;
+}
+
+
+.buscar{
+    border-radius: 15px;
+    width: 143px;
+    height: 76px;
+    font: normal 47px gogoia;
+    text-align: center;
+    color: #96B7A8;
+    float: right;
+    margin-right: 60px;
+    margin-bottom: 30px;
+}
+
+
+input, textarea, select{
+    outline: 0;
+}
+
+input:invalid+span:after {
+    content: '✖';
+    padding-left: 5px;
+}
+
+input:valid+span:after {
+    content: '✓';
+    padding-left: 5px;
+}
+

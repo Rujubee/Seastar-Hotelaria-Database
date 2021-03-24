@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!--link rel="stylesheet" href="design.css"-->
+
+</head>
+<body>
+    <div>
+    <form action="login1.php" method ="POST">
+        <label id="c_login"> USUÁRIO:</label>
+        <input type="text" name="usuario" id="c_login"> <br><br>
+
+        <label id="c_senha"> SENHA:</label>     
+        <input type="password" name="senha" id="c_senha"> <br><br>
+
+        <input type="submit" name="cadastrar" value="Cadastrar"> <br>
+    </form>
+    </div>
+
+    <!--?php
+    $connect = mysql_connect("localhost");
+    $db = mysql_select_db("seastar_hotelaria");
+        if(isset($_POST['cadastrar'])){
+            
+        }
+    ?-->
+
+</body>
+</html>
