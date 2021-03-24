@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `seastar_hotelaria2` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `seastar_hotelaria2`;
 -- MariaDB dump 10.17  Distrib 10.4.14-MariaDB, for Win64 (AMD64)
 --
 -- Host: 127.0.0.1    Database: seastar_hotelaria2
@@ -32,16 +30,6 @@ CREATE TABLE `administrador` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `administrador`
---
-
-LOCK TABLES `administrador` WRITE;
-/*!40000 ALTER TABLE `administrador` DISABLE KEYS */;
-INSERT INTO `administrador` VALUES ('-'),('adm_ana'),('adm_bru'),('adm_teteu');
-/*!40000 ALTER TABLE `administrador` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `cliente`
 --
 
@@ -51,23 +39,13 @@ DROP TABLE IF EXISTS `cliente`;
 CREATE TABLE `cliente` (
   `clienteLogin` varchar(10) NOT NULL,
   `numReservas` int(11) DEFAULT 0,
-  `idCupom` varchar(10) DEFAULT '-',
+  `cupomCliente` varchar(10) DEFAULT '-',
   PRIMARY KEY (`clienteLogin`),
-  KEY `fk_idCup` (`idCupom`),
+  KEY `fk_idCup` (`cupomCliente`),
   CONSTRAINT `fk_clienteLog` FOREIGN KEY (`clienteLogin`) REFERENCES `usuario` (`idUsuario`),
-  CONSTRAINT `fk_idCup` FOREIGN KEY (`idCupom`) REFERENCES `cupom` (`idCupom`)
+  CONSTRAINT `fk_idCup` FOREIGN KEY (`cupomCliente`) REFERENCES `cupom` (`idCupom`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `cliente`
---
-
-LOCK TABLES `cliente` WRITE;
-/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES ('-',0,'-'),('ananeves',0,'-'),('bthalia',0,'-'),('carlaj',8,'-'),('jcarlos',8,'-'),('joana123',5,'-'),('lcrocha',0,'-');
-/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `cupom`
@@ -87,14 +65,21 @@ CREATE TABLE `cupom` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `cupom`
+-- Table structure for table `feriado`
 --
 
-LOCK TABLES `cupom` WRITE;
-/*!40000 ALTER TABLE `cupom` DISABLE KEYS */;
-INSERT INTO `cupom` VALUES ('-',0,'-'),('friday10',100,'adm_bru'),('FUI10',10,'adm_bru');
-/*!40000 ALTER TABLE `cupom` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `feriado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `feriado` (
+  `adm` varchar(10) NOT NULL,
+  `dataFeriado` date NOT NULL,
+  `feriado` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`dataFeriado`),
+  KEY `fk_adm` (`adm`),
+  CONSTRAINT `fk_adm` FOREIGN KEY (`adm`) REFERENCES `administrador` (`admLogin`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `hotel`
@@ -106,22 +91,12 @@ DROP TABLE IF EXISTS `hotel`;
 CREATE TABLE `hotel` (
   `nome` varchar(50) NOT NULL,
   `idHotel` varchar(10) NOT NULL,
-  `quartoQtd` int(11) NOT NULL,
   `imagem` varchar(20) DEFAULT NULL,
   `numDiarias` int(11) NOT NULL DEFAULT 0,
+  `receita` int(11) DEFAULT 0,
   PRIMARY KEY (`idHotel`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `hotel`
---
-
-LOCK TABLES `hotel` WRITE;
-/*!40000 ALTER TABLE `hotel` DISABLE KEYS */;
-INSERT INTO `hotel` VALUES ('Hotel Amanda','hamanda',8,'hotel7.jpg',0),('Hotel Gloria','hgloria',15,'hotel11.jpg',0),('Hotel Lara','hlara',15,'hotel13.jpg',0),('Hotel Paufino','hpaufino',15,'hotel16.jpg',0),('Hotel Raba','hraba',17,'hotel13.jpg',0);
-/*!40000 ALTER TABLE `hotel` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `localizacao`
@@ -140,16 +115,6 @@ CREATE TABLE `localizacao` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `localizacao`
---
-
-LOCK TABLES `localizacao` WRITE;
-/*!40000 ALTER TABLE `localizacao` DISABLE KEYS */;
-INSERT INTO `localizacao` VALUES ('hamanda','Lagoa Dourada','Centro'),('hgloria','Lagoa Dourada','Centro'),('hlara','Resende Costa','Centro'),('hpaufino','Lagoa Dourada','Centro'),('hraba','Lagoa Dourada','Centro');
-/*!40000 ALTER TABLE `localizacao` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `quarto`
 --
 
@@ -165,18 +130,8 @@ CREATE TABLE `quarto` (
   PRIMARY KEY (`idQuarto`),
   KEY `fk_idHotel2` (`idHQ`),
   CONSTRAINT `fk_idHotel2` FOREIGN KEY (`idHQ`) REFERENCES `hotel` (`idHotel`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `quarto`
---
-
-LOCK TABLES `quarto` WRITE;
-/*!40000 ALTER TABLE `quarto` DISABLE KEYS */;
-INSERT INTO `quarto` VALUES ('hgloria',6,70,'S','quarto10.jpg'),('hgloria',7,4,'S','quarto11.jpg'),('hamanda',9,4,'C','quarto11.jpg'),('hamanda',10,6,'S','quarto4.jpg'),('hlara',11,30,'C','quarto8.jpg'),('hlara',12,5,'S','quarto8.jpg'),('hpaufino',13,60,'S','quarto1.jpg'),('hraba',17,80,'S','quarto12.jpg'),('hraba',18,60,'S','quarto6.jpg');
-/*!40000 ALTER TABLE `quarto` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `reserva`
@@ -192,23 +147,14 @@ CREATE TABLE `reserva` (
   `usuarioLogin` varchar(10) NOT NULL,
   `dataEntrada` date DEFAULT '1999-12-31',
   `dataSaida` date DEFAULT '1999-12-31',
+  `valorTotal` int(11) DEFAULT 0,
   PRIMARY KEY (`idDaReserva`),
   KEY `fk_idHReserva` (`idQR`),
   KEY `fk_clientLogg` (`usuarioLogin`),
   CONSTRAINT `fk_clientLogg` FOREIGN KEY (`usuarioLogin`) REFERENCES `cliente` (`clienteLogin`) ON DELETE CASCADE,
   CONSTRAINT `fk_idHReserva` FOREIGN KEY (`idQR`) REFERENCES `quarto` (`idQuarto`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `reserva`
---
-
-LOCK TABLES `reserva` WRITE;
-/*!40000 ALTER TABLE `reserva` DISABLE KEYS */;
-INSERT INTO `reserva` VALUES (6,1,'D','-','0000-00-00','0000-00-00'),(17,2,'D','-','0000-00-00','0000-00-00'),(18,3,'D','-','0000-00-00','0000-00-00'),(9,13,'R','carlaj','2020-11-22','2020-11-30'),(13,14,'R','jcarlos','2020-11-22','2020-11-30'),(18,15,'R','joana123','2020-12-05','2020-12-10');
-/*!40000 ALTER TABLE `reserva` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `usuario`
@@ -229,16 +175,6 @@ CREATE TABLE `usuario` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuario`
---
-
-LOCK TABLES `usuario` WRITE;
-/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES ('-','-','-','-','-','-'),('Ana','Flavia','adm_ana','5390489da3971cbbcd22c159d54d24da','analemos22@gmail.com','32998127753'),('Bruce Williss','de Mendonça','adm_bru','ff58ac7e8a159bfb312ee301d4880266','iambruc3@hotmail.com','32998127783'),('Matheus','Piano','adm_teteu','e56b6eea9b0bc782bbb9ea6098ead641','matheuspiano@hotmail.com','32999041419'),('Ana','Leticia','ananeves','analele123','analeticia@oi.com','32998126578'),('Thalia','Bianca','bthalia','thalia123','thaliab@oi.com','32998765677'),('Carla','Joao','carlaj','998a0b86802f387c77bffa2d737c6557','carlajoao@oi.com','32997127783'),('Joao','Carlos','jcarlos','9ad48828b0955513f7cf0f7f6510c8f8','joaocarlos@oi.com','32998128783'),('Joana','Maria','joana123','c689de85871d8325aca2ddef8de173cd','joanamaria2@oi.com','32998127743'),('Leonardo','Rocha','lcrocha','leorocha123','lcrocha@gmail.com','32998129087');
-/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Dumping events for database 'seastar_hotelaria2'
 --
 
@@ -255,4 +191,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-22 21:49:42
+-- Dump completed on 2021-03-23 23:49:57
